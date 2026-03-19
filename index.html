@@ -3,45 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eid Greetings</title>
+    <title>Happy Eid Mubarak - Gift</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background: linear-gradient(to right, #8e44ad, #3498db);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            text-align: center;
+            font-family: 'Arial', sans-serif;
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            margin: 0;
+            padding: 20px;
+            overflow: hidden;
         }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+        }
+
         h1 {
-            font-size: 4em;
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            animation: glow 2s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+            50% {
+                text-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+            }
+        }
+
         .gift-box {
-            font-size: 3em;
-            margin: 20px;
+            font-size: 5em;
+            margin: 30px 0;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+            display: inline-block;
+            transition: transform 0.2s;
         }
+
+        .gift-box:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .message {
+            max-width: 600px;
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .eid-greeting {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
         .fireworks {
-            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #FFD700;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty));
+                opacity: 0;
+            }
+        }
+
+        button {
+            background: #FFD700;
+            color: #764ba2;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background: #FFC700;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(0.95);
         }
     </style>
-    <script>
-        function showFireworks() {
-            const fireworks = document.querySelector('.fireworks');
-            fireworks.style.display = 'block';
-            setTimeout(() => {
-                fireworks.style.display = 'none';
-            }, 2000);
-        }
-    </script>
 </head>
 <body>
-    <h1>Happy Eid Mubarak!</h1>
-    <div class="gift-box">🎁</div>
-    <p>Wishing you joy, peace, and blessings on this special day.</p>
-    <button onclick="showFireworks()">Celebrate!</button>
-    <div class="fireworks">🎆🎇</div>
+    <div class="fireworks" id="fireworks"></div>
+
+    <div class="container">
+        <div class="eid-greeting">🌙 Happy Eid Mubarak 🌙</div>
+        
+        <div class="gift-box" onclick="celebrate()">🎁</div>
+        
+        <div class="message">
+            <p>Thank you for being more than just a teacher—you've been a guide and an inspiration. Your patience and belief in me have made all the difference in my journey. I'll always be grateful for the lessons you've taught me, both in the classroom and in life. Respect and love always.</p>
+        </div>
+
+        <button onclick="celebrate()">Celebrate!</button>
+    </div>
+
+    <script>
+        function celebrate() {
+            createFireworks();
+            showAlert();
+        }
+
+        function createFireworks() {
+            const fireworks = document.getElementById('fireworks');
+            fireworks.innerHTML = '';
+
+            for (let i = 0; i < 50; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+
+                const angle = (Math.random() * Math.PI * 2);
+                const distance = 100 + Math.random() * 300;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+
+                sparkle.style.setProperty('--tx', `${tx}px`);
+                sparkle.style.setProperty('--ty', `${ty}px`);
+                sparkle.style.animation = `explode 1s ease-out forwards`;
+                sparkle.style.animationDelay = `${Math.random() * 0.3}s`;
+
+                fireworks.appendChild(sparkle);
+            }
+
+            setTimeout(() => {
+                fireworks.innerHTML = '';
+            }, 1300);
+        }
+
+        function showAlert() {
+            alert('🎉 Happy Eid Mubarak! 🎉\n\nMay your day be filled with joy, peace, and blessings!');
+        }
+    </script>
 </body>
 </html>
