@@ -3,70 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eid Gift</title>
+    <title>Eid Greetings</title>
     <style>
         body {
+            background: linear-gradient(to right, #8e44ad, #3498db);
+            color: white;
+            text-align: center;
+            height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #f1f1f1;
-            text-align: center;
+            margin: 0;
+        }
+        h1 {
+            font-size: 4em;
         }
         .gift-box {
-            width: 100px;
-            height: 100px;
-            background-color: #FFCC00;
-            border: 5px solid #FF9900;
-            position: relative;
-            animation: bounce 2s infinite;
-            margin: auto;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-20px);
-            }
-            60% {
-                transform: translateY(-10px);
-            }
+            font-size: 3em;
+            margin: 20px;
         }
         .fireworks {
-            position: absolute;
-            top: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            background-color: transparent;
-            border-left: 2px solid transparent;
-            border-right: 2px solid transparent;
-            animation: explode 1s forwards;
-        }
-        @keyframes explode {
-            0% {
-                width: 0;
-                height: 0;
-            }
-            50% {
-                width: 100px;
-                height: 100px;
-                border-left: 2px solid #FF0000;
-                border-right: 2px solid #FF0000;
-            }
-            100% {
-                width: 0;
-                height: 0;
-            }
+            display: none;
         }
     </style>
+    <script>
+        function showFireworks() {
+            const fireworks = document.querySelector('.fireworks');
+            fireworks.style.display = 'block';
+            setTimeout(() => {
+                fireworks.style.display = 'none';
+            }, 2000);
+        }
+    </script>
 </head>
 <body>
-    <div class="gift-box">
-        <div class="fireworks"></div>
-    </div>
-    <p>Thank you for being more than just a teacher—you've been a guide and an inspiration. Your patience and belief in me have made all the difference in my journey. I'll always be grateful for the lessons you've taught me, both in the classroom and in life. Respect and love always.</p>
+    <h1>Happy Eid Mubarak!</h1>
+    <div class="gift-box">🎁</div>
+    <p>Wishing you joy, peace, and blessings on this special day.</p>
+    <button onclick="showFireworks()">Celebrate!</button>
+    <div class="fireworks">🎆🎇</div>
 </body>
 </html>
