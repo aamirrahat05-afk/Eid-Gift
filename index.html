@@ -3,36 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAMIR RAHAT - EID GIFT</title>
+    <title>Eid Gift</title>
     <style>
         body {
-            background: linear-gradient(to bottom, #1a1a1a, #333);
-            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f1f1f1;
             text-align: center;
-            padding: 20px;
-        }
-        h1 {
-            font-size: 3em;
-            margin: 20px;
         }
         .gift-box {
             width: 100px;
             height: 100px;
-            margin: 0 auto;
+            background-color: #FFCC00;
+            border: 5px solid #FF9900;
             position: relative;
+            animation: bounce 2s infinite;
+            margin: auto;
         }
-        /* Add your gift box animation and sparkles here */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+        .fireworks {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            background-color: transparent;
+            border-left: 2px solid transparent;
+            border-right: 2px solid transparent;
+            animation: explode 1s forwards;
+        }
+        @keyframes explode {
+            0% {
+                width: 0;
+                height: 0;
+            }
+            50% {
+                width: 100px;
+                height: 100px;
+                border-left: 2px solid #FF0000;
+                border-right: 2px solid #FF0000;
+            }
+            100% {
+                width: 0;
+                height: 0;
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>EID GIFT</h1>
     <div class="gift-box">
-        <!-- Animation and design for the gift box -->
+        <div class="fireworks"></div>
     </div>
-    <p>You're not just my best friend, you're my safe space. With you, I can be my weirdest, silliest self without ever feeling judged. Through every laugh and every tear, you've been my constant. I don't say it enough, but I truly don't know what I'd do without you—love you, bro.</p>
-    <audio controls>
-        <source src="path_to_your_audio_file.mp3" type="audio/mp3">
-        Your browser does not support the audio tag.
-    </audio>
+    <p>Thank you for being more than just a teacher—you've been a guide and an inspiration. Your patience and belief in me have made all the difference in my journey. I'll always be grateful for the lessons you've taught me, both in the classroom and in life. Respect and love always.</p>
 </body>
 </html>
